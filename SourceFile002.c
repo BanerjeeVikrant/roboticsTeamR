@@ -15,30 +15,21 @@ task main(){
 		motor[rightMotor] = vexRT[Ch2] * -1.5;
 
 		if(vexRT[Btn7U] == 1){
-			motor[topLeftMotor1] = -40;
-			motor[topRightMotor1] = -40;
-			motor[topLeftMotor2] = 40;
-			motor[topRightMotor2] = -40;
+			motor[topLeftMotor1] = -100;
+			motor[topRightMotor1] = -100;
+			//motor[topLeftMotor2] = 100;
+			//motor[topRightMotor2] = -100;
+
 		}
 
 		if(vexRT[Btn7D] == 1){
-			motor[topLeftMotor1] = 40;
-			motor[topRightMotor1] = 40;
-			motor[topLeftMotor2] = -40;
-			motor[topRightMotor2] = 40;
+			motor[topLeftMotor1] = 100;
+			motor[topRightMotor1] = 100;
+			//motor[topLeftMotor2] = -100;
+			//motor[topRightMotor2] = 100;
+
 		}
-		if(vexRT[Btn7U] == 0){
-			motor[topLeftMotor1] = 0;
-			motor[topRightMotor1] = 0;
-			motor[topLeftMotor2] = 0;
-			motor[topRightMotor2] = 0;
-		}
-		if(vexRT[Btn7D] == 0){
-			motor[topLeftMotor1] = 0;
-			motor[topRightMotor1] = 0;
-			motor[topLeftMotor2] = 0;
-			motor[topRightMotor2] = 0;
-		}
+
 
 	}
 
