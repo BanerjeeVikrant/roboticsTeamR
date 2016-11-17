@@ -1,8 +1,11 @@
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*        Description: Competition template for VEX EDR                      */
-/*                                                                           */
-/*---------------------------------------------------------------------------*/
+#pragma config(Motor,  port2,           rightMotor,    tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port3,           leftMotor,     tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port4,           topLeftMotor1, tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port5,           topRightMotor1, tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port6,           topLeftMotor2, tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port7,           topRightMotor2, tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port8,           flippingMotorRight, tmotorNone, openLoop)
+#pragma config(Motor,  port9,           flippingMotorLeft, tmotorNone, openLoop)
 
 // This code is for the VEX cortex platform
 #pragma platform(VEX2)
@@ -12,6 +15,19 @@
 
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
+
+// Variables !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//**Up means Positive **Down means negative
+int armSpeedUp = 50;
+int armSpeedDown = -50;
+
+//void basicMovement()
+int controlSensitivityUp = 1.5;
+int controlSensitivityDown = -1.5;
+
+int stop_motor = 0;
+
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
@@ -69,21 +85,59 @@ task autonomous()
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
+void basicMovement(){
+  motor[leftMotor] = vexRT[Ch3] * controlSensitivityUp;
+  motor[rightMotor] = vexRT[Ch2] * controlSensitivityDown;
+}
+
+void createMovementSpeed(int a, int b, int c, int d){
+  motor[topLeftMotor1] = a;
+  motor[topRightMotor1] = b;
+  motor[topLeftMotor2] = c;
+  motor[topRightMotor2] = d;
+}
+
+void armMoveUp(){
+  createMovementSpeed(armSpeedUp,armSpeedDown,armSpeedUp,armSpeedDown);
+}
+
+void armMoveDown(){
+  createMovementSpeed(armSpeedDown,armSpeedUp,armSpeedDown,armSpeedUp);
+}
+
+void armMoveStop(){
+  createMovementSpeed(stop_motor,stop_motor,stop_motor,stop_motor);
+}
+
+void armMovement(){
+  if(vexRT[Btn7U] == 1){
+
+    armMoveUp();
+
+  } else if(vexRT[Btn7D] == 1){
+
+    armMoveDown();
+
+  } else if(vexRT[Btn7U] == 0){
+
+    armMoveStop();
+
+  } else if(vexRT[Btn7D] == 0){
+
+    armMoveStop();
+
+  } 
+}
+
 task usercontrol()
 {
   // User control code here, inside the loop
 
   while (true)
   {
-    // This is the main execution loop for the user control program.
-    // Each time through the loop your program should update motor + servo
-    // values based on feedback from the joysticks.
+    
+    basicMovement();
+    armMovement();
 
-    // ........................................................................
-    // Insert user code here. This is where you use the joystick values to
-    // update your motors, etc.
-    // ........................................................................
-
-    // Remove this function call once you have "real" code.
-      }
+  }
 }
