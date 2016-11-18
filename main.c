@@ -86,8 +86,8 @@ task autonomous()
 /*---------------------------------------------------------------------------*/
 
 void basicMovement(){
-  motor[leftMotor] = vexRT[Ch3] * controlSensitivityUp;
-  motor[rightMotor] = vexRT[Ch2] * controlSensitivityDown;
+  motor[leftMotor] = vexRT[Ch3] * controlSensitivityDown;
+  motor[rightMotor] = vexRT[Ch2] * controlSensitivityUp;
 }
 
 void createMovementSpeed(int a, int b, int c, int d){
@@ -126,7 +126,7 @@ void armMovement(){
 
     armMoveStop();
 
-  } 
+  }
 }
 
 task usercontrol()
@@ -135,7 +135,7 @@ task usercontrol()
 
   while (true)
   {
-    
+
     basicMovement();
     armMovement();
 
