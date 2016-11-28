@@ -69,8 +69,8 @@ task autonomous(){
 }
 //This is for the wheels to move
 void basicMovement(){
-  motor[leftMotor] = vexRT[Ch3] * controlSensitivityUp;
-  motor[rightMotor] = vexRT[Ch2] * controlSensitivityDown;
+  motor[leftMotor] = vexRT[Ch3] * controlSensitivityDown;
+  motor[rightMotor] = vexRT[Ch2] * controlSensitivityUp;
 }
 
 //creates a speed code for all the motors of the arm
@@ -113,7 +113,7 @@ void armMovement(){
 
     armMoveStop();
 
-  } 
+  }
 }
 
 /*---------------------------------------------------------------------------*/
