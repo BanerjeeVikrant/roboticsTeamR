@@ -22,7 +22,7 @@
 int armSpeedUp = 50;
 int armSpeedDown = -50;
 
-//void basicMovement()
+//basicMovement()
 int controlSensitivityUp = 1.5;
 int controlSensitivityDown = -1.5;
 
@@ -39,8 +39,7 @@ int stop_motor = 0;
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
 
-void pre_auton()
-{
+void pre_auton(){
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
   // running between Autonomous and Driver controlled modes. You will need to
   // manage all user created tasks if set to false.
@@ -65,31 +64,16 @@ void pre_auton()
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-task autonomous()
-{
-  // ..........................................................................
-  // Insert user code here.
-  // ..........................................................................
+task autonomous(){
 
-  // Remove this function call once you have "real" code.
-  AutonomousCodePlaceholderForTesting();
 }
-
-/*---------------------------------------------------------------------------*/
-/*                                                                           */
-/*                              User Control Task                            */
-/*                                                                           */
-/*  This task is used to control your robot during the user control phase of */
-/*  a VEX Competition.                                                       */
-/*                                                                           */
-/*  You must modify the code to add your own robot specific commands here.   */
-/*---------------------------------------------------------------------------*/
-
+//This is for the wheels to move
 void basicMovement(){
   motor[leftMotor] = vexRT[Ch3] * controlSensitivityUp;
   motor[rightMotor] = vexRT[Ch2] * controlSensitivityDown;
 }
 
+//creates a speed code for all the motors of the arm
 void createMovementSpeed(int a, int b, int c, int d){
   motor[topLeftMotor1] = a;
   motor[topRightMotor1] = b;
@@ -97,6 +81,7 @@ void createMovementSpeed(int a, int b, int c, int d){
   motor[topRightMotor2] = d;
 }
 
+//takes in the int values and creates speed code
 void armMoveUp(){
   createMovementSpeed(armSpeedUp,armSpeedDown,armSpeedUp,armSpeedDown);
 }
@@ -109,7 +94,9 @@ void armMoveStop(){
   createMovementSpeed(stop_motor,stop_motor,stop_motor,stop_motor);
 }
 
+
 void armMovement(){
+
   if(vexRT[Btn7U] == 1){
 
     armMoveUp();
@@ -129,14 +116,25 @@ void armMovement(){
   } 
 }
 
-task usercontrol()
-{
+/*---------------------------------------------------------------------------*/
+/*                                                                           */
+/*                              User Control Task                            */
+/*                                                                           */
+/*  This task is used to control your robot during the user control phase of */
+/*  a VEX Competition.                                                       */
+/*                                                                           */
+/*  You must modify the code to add your own robot specific commands here.   */
+/*---------------------------------------------------------------------------*/
+
+task usercontrol(){
   // User control code here, inside the loop
 
-  while (true)
-  {
-    
+  while (true){
+
+    //wheels
     basicMovement();
+
+    //arm
     armMovement();
 
   }
