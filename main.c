@@ -20,8 +20,8 @@
 // Variables !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 //**Up means Positive **Down means negative
-int armSpeedUp = 50;
-int armSpeedDown = -50;
+int armSpeedUp = 127;
+int armSpeedDown = -127;
 
 //basicMovement()
 int controlSensitivityUp = 1.5;
@@ -117,6 +117,27 @@ void armMovement(){
   }
 }
 
+void clawMovement(){
+	if(vexRT[Btn5U] == 1){
+
+			motor[claw] = 100;
+
+	} else if(vexRT[Btn5D] == 1){
+
+			motor[claw] = -100;
+
+
+	} else if (vexRT[Btn5U] == 0){
+
+		motor[claw] = 0;
+
+	}	 else if (vexRT[Btn5D] == 0){
+
+		motor[claw] = 0;
+
+	}
+}
+
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
@@ -138,10 +159,7 @@ task usercontrol(){
     //arm
     armMovement();
 
-    if(vexRT[Btn5U] == 1){
-			motor[claw] = 50;
-		}else if (vexRT[Btn5D] == 1){
-			motor[claw] = -50;
-		}
+    //claw
+    clawMovement();
   }
 }
