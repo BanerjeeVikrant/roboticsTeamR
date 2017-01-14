@@ -87,21 +87,35 @@ void armMoveStop(){
   createMovementSpeed(stop_motor,stop_motor,stop_motor,stop_motor);
 }
 
-
-task autonomous(){
+void movingArmUp(){
 	armMoveDown();
 	wait1Msec(1500);
 	armMoveStop();
+}
+
+void alignArm(){
 	motor[flippingMotorLeft] = 70;
 	motor[flippingMotorRight] = -70;
 	wait1Msec(1800);
 	motor[flippingMotorLeft] = 0;
 	motor[flippingMotorRight] = 0;
-	armMoveUp();
-	wait1Msec(1500);
+}
+
+void openClaw(){
 	motor[claw] = -100;
 	wait1Msec(500);
 	motor[claw] = 0;
+}
+
+task autonomous(){
+	movingArmUp();
+	//outside claw
+	alignArm();
+
+	armMoveUp();
+	wait1Msec(1500);
+
+	openClaw();
 }
 //This is for the wheels to move
 void basicMovement(){
