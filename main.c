@@ -1,13 +1,14 @@
-//leftmotor
-//rightmotor
+//leftmotor1
+//leftmotor2
+//rightmotor1
+//rightmotor2
 //clawright
 //clawleft
-//topleftMotor1
-//topleftMotor2
-//topRightMotor1
-//topRightMotor2
+//topleftMotor
+//topleftMotor
 
-// This code is for the VEX cortex platform
+// This code is for the VEX
+cortex platform
 #pragma platform(VEX2)
 
 // Select Download method as "competition"
@@ -59,15 +60,16 @@ void pre_auton(){
 
 //This is for the wheels to move
 void basicMovement(){
-  motor[leftMotor] = vexRT[Ch1] * controlSensitivity;
-  motor[rightMotor] = vexRT[Ch2] * controlSensitivity;
+  motor[leftMotor1] = vexRT[Ch1] * controlSensitivity;
+  motor[leftMotor2] = vexRT[Ch1] * controlSensitivity;
+
+  motor[rightMotor1] = vexRT[Ch2] * controlSensitivity;
+  motor[rightMotor2] = vexRT[Ch2] * controlSensitivity;
 }
 
-void createMovementSpeed(int speed){
-  motor[topLeftMotor1] = speed;
-  motor[topRightMotor1] = speed;
-  motor[topLeftMotor2] = speed;
-  motor[topRightMotor2] = speed;
+void createMovementArmSpeed(int speed){
+  motor[topLeftMotor] = speed;
+  motor[topRightMotor] = speed;
 
 }
 
@@ -150,48 +152,48 @@ void helperMode(){
 
 	if(vexRT[Btn7D] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn7U] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn6U] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn6D] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn5U] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn5D] == 1){
 
 	}
 }
 void manualMode(){
 
-    //wheels
-    basicMovement();
+  //wheels
+  basicMovement();
 
-    //armsAndClaw
-    basicArmAndClaw();
+  //armsAndClaw
+  basicArmAndClaw();
 
 	//all buttons need to be click no auto moves
 
 	if(vexRT[Btn7D] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn7U] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn6U] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn6D] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn5U] == 1){
 
-	} 
+	}
 	else if(vexRT[Btn5D] == 1){
 
 	}
@@ -205,9 +207,9 @@ task autonomous(){
 
 	//pick up the cube
 
-	//drop the cube 
+	//drop the cube
 
-	//knock stars over 3 in the front 
+	//knock stars over 3 in the front
 
 	//go back
 
